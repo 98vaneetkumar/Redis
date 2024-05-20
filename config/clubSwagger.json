@@ -1,0 +1,870 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "API",
+		"description": "Documentation",
+		"version": "1.0"
+	},
+	"produces": ["application/json"],
+	"basePath": "/",
+	"securityDefinitions": {
+		"Bearer": {
+			"type": "apiKey",
+			"name": "authorization",
+			"in": "header"
+		}
+	},
+	"paths": {
+		"/api/v1/login": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-login-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "country_code",
+						"in": "formData",
+						"description": "Enter the country_code",
+						"required": true,
+						"type": "string",
+						"value": "+91"
+					},
+                    {
+						"name": "phone",
+						"in": "formData",
+						"description": "Enter phone number",
+						"required": true,
+						"type": "string",
+						"value": "8628023157"
+					},
+                    {
+						"name": "device_token",
+						"in": "formData",
+						"description": "Enter device_token",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"device_type",
+						"in":"formData",
+						"description": "1 => Android, 2 => IOS",
+						"type": "number",
+						"enum": [1, 2],
+						"required": false
+					},
+					{
+						"name":"role",
+						"in":"formData",
+						"description": "1 => user, 2 => club",
+						"type": "number",
+						"enum": [1, 2],
+						"required": true
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/v1/socialLogin": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "socialLogin",
+				"tags": ["Application Club"],
+				"description": "",
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Enter your name",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "email",
+						"in": "formData",
+						"description": "Enter your email",
+						"required": false,
+						"type": "string",
+						"value": "vaneet@gmail.com"
+					},
+                    {
+						"name": "socialId",
+						"in": "formData",
+						"description": "Enter your socialId",
+						"required": true,
+						"type": "string",
+						"value": "123456789"
+					},
+                    {
+						"name": "socialType",
+						"in": "formData",
+						"description": "1 for facebook 2 for google 3 for apple account",
+						"type": "number",
+						"enum": [1, 2,3],
+						"required": true
+					},
+					{
+						"name":"device_type",
+						"description": "2 => IOS, 1 => Andriod",
+						"type": "number",
+						"enum": [1, 2],
+						"required": false
+					},
+					{
+						"name": "device_token",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "image",
+						"in": "formData",
+						"description": "Select single image to upload",
+						"required": false,
+						"type": "file",
+						"items": {
+						  "type": "file"
+						}
+					},
+					{
+						"name":"role",
+						"in":"formData",
+						"description": "1 => user, 2 => club",
+						"type": "number",
+						"enum": [1, 2],
+						"required": true
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/v1/optVerify": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "optVerify",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name":"country_code",
+						"in":"formData",
+						"description":"Enter your country_code",
+						"required":true,
+						"type":"string",
+						"value":"+91"
+					},
+                    {
+						"name":"phone",
+						"in":"formData",
+						"description":"Enter your phone number",
+						"required":true, 
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"otp",
+						"in":"formData",
+						"description":"Enter otp",
+						"required":true,
+						"type":"string",
+						"value":"1111"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/resendOtp": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "resendOtp",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+                    {
+						"name":"country_code",
+						"in":"formData",
+						"description":"Enter your country_code",
+						"required":true,
+						"type":"string",
+						"value":"+91"
+					},
+					{
+						"name":"phone",
+						"in":"formData",
+						"description":"Enter your phone",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/v1/accountdelete": {
+			"delete": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "delete",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/notificationOnOff": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "notificationOnOff of",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/questionAnswer": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "questionAnswer of",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/completeProfile": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-completeProfileUser-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "club_name",
+						"in": "formData",
+						"description": "Enter the club_name",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "enterprise_name",
+						"in": "formData",
+						"description": "Enter  enterprise_name",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "Id_number",
+						"in": "formData",
+						"description": "Enter Id_number",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"location",
+						"in":"formData",
+						"description": "Enter your location",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name":"latitude",
+						"in":"formData",
+						"description": "Enter your latitude",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name":"longitude",
+						"in":"formData",
+						"description": "Enter your longitude",
+						"type": "number",
+						"required": false,
+						"value":""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/updateDetails": {
+			"put": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-updateUserDetails-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Enter the name",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "phone",
+						"in": "formData",
+						"description": "Enter phone ",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "country_code",
+						"in": "formData",
+						"description": "Enter country_code",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"email",
+						"in":"formData",
+						"description": "Enter your email",
+						"type": "number",
+						"required": false,
+						"value":""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/saveLocation": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-saveLocation-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "location",
+						"in": "formData",
+						"description": "Enter the location",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "latitude",
+						"in": "formData",
+						"description": "Enter you latitude",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "longitude",
+						"in": "formData",
+						"description": "Enter longitude",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/cmcClub": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "cmcUser list",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/logOut": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "LogOut",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "device_token",
+						"in": "formData",
+						"description": "Enter device_token",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"device_type",
+						"in":"formData",
+						"description": "1 => Android, 2 => IOS",
+						"type": "number",
+						"enum": [1, 2],
+						"required": false
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/viewClubDetail": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "viewClubDetail of",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "formData",
+						"description": "Enter the Club id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/createEvent": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-createEvent-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "clubId",
+						"in": "formData",
+						"description": "Enter the clubId",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "type",
+						"in": "formData",
+						"description": "Enter the type",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "name",
+						"in": "formData",
+						"description": "Enter  name",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "eventDate",
+						"in": "formData",
+						"description": "Enter eventDate",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "eventTime",
+						"in": "formData",
+						"description": "Enter  eventTime",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "ticketType",
+						"in": "formData",
+						"description": "Enter ticketType",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "price",
+						"in": "formData",
+						"description": "Enter price",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "noOfTickets",
+						"in": "formData",
+						"description": "Enter  noOfTickets",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "rules",
+						"in": "formData",
+						"description": "Enter rules",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "description",
+						"in": "formData",
+						"description": "Enter  description",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"location",
+						"in":"formData",
+						"description": "Enter your location",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name":"latitude",
+						"in":"formData",
+						"description": "Enter your latitude",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name":"longitude",
+						"in":"formData",
+						"description": "Enter your longitude",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name": "multipleimage",
+						"in": "formData",
+						"description": "Select multiple image to upload",
+						"required": false,
+						"type": "array",
+						"items": {
+						  "type": "file"
+						}
+					},
+					{
+						"name": "multipleVidio",
+						"in": "formData",
+						"description": "Select multiple video to upload",
+						"required": false,
+						"type": "array",
+						"items": {
+						  "type": "file"
+						}
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/userListBookingEvent": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-userListBookingEvent-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "formData",
+						"description": "Enter the eventId",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/updateEvent": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-createEvent-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "formData",
+						"description": "Enter the id of event",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "type",
+						"in": "formData",
+						"description": "Enter the type",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "name",
+						"in": "formData",
+						"description": "Enter  name",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "eventDate",
+						"in": "formData",
+						"description": "Enter eventDate",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "eventTime",
+						"in": "formData",
+						"description": "Enter  eventTime",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "ticketType",
+						"in": "formData",
+						"description": "Enter ticketType",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "price",
+						"in": "formData",
+						"description": "Enter price",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "noOfTickets",
+						"in": "formData",
+						"description": "Enter  noOfTickets",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "rules",
+						"in": "formData",
+						"description": "Enter rules",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "description",
+						"in": "formData",
+						"description": "Enter  description",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"location",
+						"in":"formData",
+						"description": "Enter your location",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name":"latitude",
+						"in":"formData",
+						"description": "Enter your latitude",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name":"longitude",
+						"in":"formData",
+						"description": "Enter your longitude",
+						"type": "number",
+						"required": false,
+						"value":""
+					},
+					{
+						"name": "images",
+						"in": "formData",
+						"description": "Select multiple image to upload",
+						"required": false,
+						"type": "array",
+						"items": {
+						  "type": "file"
+						}
+					},
+					{
+						"name": "videos",
+						"in": "formData",
+						"description": "Select multiple video to upload",
+						"required": false,
+						"type": "array",
+						"items": {
+						  "type": "file"
+						}
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/deleteEvent": {
+			"delete": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "deleteEvent",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "formData",
+						"description": "Enter the id of event",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/myCreatedEvent": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "myCreatedEvent",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/clubAllEvent": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "clubAllEvent",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "clubId",
+						"in": "formData",
+						"description": "Enter the clubId",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/v1/userQuestionAnswer": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-completeProfileUser-post",
+				"tags": ["Application Club"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema":{
+                            "properties":{
+								"answer": {
+									"type": "array",
+									"required": false,
+									"items": {
+										"$ref": "#/definitions/answer"
+									},
+									"example": [
+										{ "questionId": "111","answerId":"1"},
+										{ "questionId": "2222","answerId":"1"}
+									]
+								}
+							}
+						}
+					}
+				],
+				"responses": {}
+			}
+		}
+	},
+	"definations":{
+		"answer": {
+			"type": "object",
+			"properties": {
+				"answer": {
+					"type": "string"
+				}
+			},
+			"example": [
+				{ "questionId": "111","answerId":"1"},
+				{ "questionId": "2222","answerId":"1"}
+			]
+		}
+	}
+}
+
+

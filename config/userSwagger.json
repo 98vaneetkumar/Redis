@@ -1,0 +1,1010 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "API",
+		"description": "Documentation",
+		"version": "1.0"
+	},
+	"produces": ["application/json"],
+	"basePath": "/",
+	"securityDefinitions": {
+		"Bearer": {
+			"type": "apiKey",
+			"name": "authorization",
+			"in": "header"
+		}
+	},
+	"paths": {
+		"/api/login": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-login-post",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "country_code",
+						"in": "formData",
+						"description": "Enter the country_code",
+						"required": true,
+						"type": "string",
+						"value": "+91"
+					},
+                    {
+						"name": "phone",
+						"in": "formData",
+						"description": "Enter phone number",
+						"required": true,
+						"type": "string",
+						"value": "8628023157"
+					},
+                    {
+						"name": "device_token",
+						"in": "formData",
+						"description": "Enter device_token",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"device_type",
+						"in":"formData",
+						"description": "1 => Android, 2 => IOS",
+						"type": "number",
+						"enum": [1, 2],
+						"required": false
+					},
+					{
+						"name":"role",
+						"in":"formData",
+						"description": "1 => user, 2 => club",
+						"type": "number",
+						"enum": [1, 2],
+						"required": true
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/socialLogin": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "socialLogin",
+				"tags": ["Application User"],
+				"description": "",
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Enter your name",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "email",
+						"in": "formData",
+						"description": "Enter your email",
+						"required": false,
+						"type": "string",
+						"value": "vaneet@gmail.com"
+					},
+                    {
+						"name": "socialId",
+						"in": "formData",
+						"description": "Enter your socialId",
+						"required": true,
+						"type": "string",
+						"value": "123456789"
+					},
+                    {
+						"name": "socialType",
+						"in": "formData",
+						"description": "1 for facebook 2 for google 3 for apple account",
+						"type": "number",
+						"enum": [1, 2,3],
+						"required": true
+					},
+					{
+						"name":"device_type",
+						"description": "2 => IOS, 1 => Andriod",
+						"type": "number",
+						"enum": [1, 2],
+						"required": false
+					},
+					{
+						"name": "device_token",
+						"in": "formData",
+						"description": "Device token for PUSH notifications",
+						"required": false,
+						"type": "string",
+						"value": "abc"
+					},
+					{
+						"name": "image",
+						"in": "formData",
+						"description": "Select single image to upload",
+						"required": false,
+						"type": "file",
+						"items": {
+						  "type": "file"
+						}
+					},
+					{
+						"name":"role",
+						"in":"formData",
+						"description": "1 => user, 2 => club",
+						"type": "number",
+						"enum": [1, 2],
+						"required": true
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/optVerify": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "optVerify",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name":"country_code",
+						"in":"formData",
+						"description":"Enter your country_code",
+						"required":true,
+						"type":"string",
+						"value":"+91"
+					},
+                    {
+						"name":"phone",
+						"in":"formData",
+						"description":"Enter your phone number",
+						"required":true, 
+						"type":"string",
+						"value":"8628023157"
+					},
+					{
+						"name":"otp",
+						"in":"formData",
+						"description":"Enter otp",
+						"required":true,
+						"type":"string",
+						"value":"1111"
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/resendOtp": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "resendOtp",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+                    {
+						"name":"country_code",
+						"in":"formData",
+						"description":"Enter your country_code",
+						"required":true,
+						"type":"string",
+						"value":"+91"
+					},
+					{
+						"name":"phone",
+						"in":"formData",
+						"description":"Enter your phone",
+						"required":true,
+						"type":"string",
+						"value":"8628023157"
+					}
+				],
+				"responses": {}
+			}
+		},
+        "/api/accountdelete": {
+			"delete": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "delete",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/notificationOnOff": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "notificationOnOff of",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/completeProfileUser": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-completeProfileUser-post",
+				"tags": ["Application User"],
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Enter the name",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+                    {
+						"name": "gender",
+						"in": "formData",
+						"description": "Enter  gender",
+						"required": true,
+						"type": "string",
+						"enum": ["Male", "Female","Both"],
+						"value": "Male"
+					},
+                    {
+						"name": "age",
+						"in": "formData",
+						"description": "Enter age",
+						"required": true,
+						"type": "string",
+						"value": "25"
+					},
+					{
+						"name":"email",
+						"in":"formData",
+						"description": "Enter your email",
+						"type": "string",
+						"required": false,
+						"value":"vaneet@gmail.com"
+					},
+					{
+						"name":"bio",
+						"in":"formData",
+						"description": "Enter your bio",
+						"type": "string"	,
+						"required": false,
+						"value":"This is testing."
+					},
+					{
+						"name": "image",
+						"in": "formData",
+						"description": "Select single image to upload",
+						"required": false,
+						"type": "file",
+						"items": {
+						  "type": "file"
+						}
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/updateUserDetails": {
+			"put": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-updateUserDetails-post",
+				"tags": ["Application User"],
+				"description": "",
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Enter the name",
+						"required": true,
+						"type": "string",
+						"value": "vaneet kumar"
+					},
+                    {
+						"name": "gender",
+						"in": "formData",
+						"description": "Enter phone gender",
+						"required": false,
+						"type": "string",
+						"enum": ["Male", "Female","Both"],
+						"value": "Male"
+					},
+                    {
+						"name": "age",
+						"in": "formData",
+						"description": "Enter age",
+						"required": true,
+						"type": "string",
+						"value": "25"
+					},
+					{
+						"name":"email",
+						"in":"formData",
+						"description": "Enter your email",
+						"type": "string",
+						"required": false,
+						"value":"vaneet@gmail.com"
+					},
+					{
+						"name":"bio",
+						"in":"formData",
+						"description": "Enter your bio",
+						"type": "string",
+						"required": false,
+						"value":"This is testing."
+					},
+					{
+						"name": "image",
+						"in": "formData",
+						"description": "Select single image to upload",
+						"required": false,
+						"type": "file",
+						"items": {
+						  "type": "file"
+						}
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/saveLocation": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-saveLocation-post",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "location",
+						"in": "formData",
+						"description": "Enter the location",
+						"required": true,
+						"type": "string",
+						"value": "Mohali"
+					},
+                    {
+						"name": "latitude",
+						"in": "formData",
+						"description": "Enter you latitude",
+						"required": true,
+						"type": "string",
+						"value": "30.7046"
+					},
+                    {
+						"name": "longitude",
+						"in": "formData",
+						"description": "Enter longitude",
+						"required": true,
+						"type": "string",
+						"value": "76.7179"
+					},
+					{
+						"name": "device_token",
+						"in": "formData",
+						"description": "Enter device_token",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"device_type",
+						"in":"formData",
+						"description": "1 => Android, 2 => IOS",
+						"type": "number",
+						"enum": [1, 2],
+						"required": false
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/notificationList": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "notificationList of",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/otherUserProfile": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "otherUserProfile of",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "formData",
+						"description": "Enter the uses id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/cmcUser": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "cmcUser list",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/logOut": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "LogOut",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "device_token",
+						"in": "formData",
+						"description": "Enter device_token",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name":"device_type",
+						"in":"formData",
+						"description": "1 => Android, 2 => IOS",
+						"type": "number",
+						"enum": [1, 2],
+						"required": false
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/viewClubDetail": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "viewClubDetail of",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "formData",
+						"description": "Enter the Club id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/myAllBooking": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "myAllBooking",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/bookEvent": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-bookEvent-post",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "formData",
+						"description": "Enter the eventId",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "ticketType",
+						"in": "formData",
+						"description": "Enter  ticketType",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "noOfTickets",
+						"in": "formData",
+						"description": "Enter noOfTickets",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/createPost": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-completeProfileUser-post",
+				"tags": ["Application User"],
+				"consumes": ["multipart/form-data"],
+				"produces": ["application/json"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"schema":{
+                            "properties":{
+								"name_of_the_club": {
+									"in": "formData",
+									"type": "string",
+									"required": false
+								},
+								"clubId":{
+									"in":"formData",
+									"type":"string"
+								},
+								"caption": {
+									"in": "formData",
+									"type": "string",
+									"required": false
+								},
+								"location": {
+									"in": "formData",
+									"type": "string",
+									"required": false
+								},
+								"image": {
+									"in": "formData",
+									"type": "file",
+									"required": false
+								},
+								"longitude":{	
+									"in": "formData",
+									"type": "string",
+									"required": false},
+								"latitude":{
+									"in": "formData",
+									"type": "string",
+									"required": false
+								},
+								"tagePeoplesId": {
+									"type": "array",
+									"required": false,
+									"items": {
+										"$ref": "#/definitions/serviceId"
+									},
+									"example": [
+										{ "userId": "111"},
+										{ "userId": "2222"}
+									]
+								}
+							}
+						}
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/createRating": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-createRating-post",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "clubId",
+						"in": "formData",
+						"description": "Enter the clubId",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "rating",
+						"in": "formData",
+						"description": "Enter  rating",
+						"required": true,
+						"enum":[1,2,3,4,5],
+						"type": "string",
+						"value": ""
+					},
+                    {
+						"name": "message",
+						"in": "formData",
+						"description": "Enter message",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/likePost": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-likePost-post",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "postId",
+						"in": "formData",
+						"description": "Enter the post Id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/commentOnPost": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-commentOnPost-post",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+					{
+						"name": "postId",
+						"in": "formData",
+						"description": "Enter the post Id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "comment",
+						"in": "formData",
+						"description": "Enter the comment",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/allPostNotCreatedByMe": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "allPostNotCreatedByMe",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/allPostCreatedByMe": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "allPostCreatedByMe",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/likePostUserList": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-likePostUserList-post",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "postId",
+						"in": "formData",
+						"description": "Enter the post Id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/commentPostUseList": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-commentPostUseList-post",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "postId",
+						"in": "formData",
+						"description": "Enter the post Id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/friendRequestSend": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-friendRequestSend-post",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "followingId",
+						"in": "formData",
+						"description": "Enter the id of those user whom to send friend request",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/acceptRejectRequest": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-acceptRejectRequest-post",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "userFollowId",
+						"in": "formData",
+						"description": "Enter the userFollowId",
+						"required": true,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "isAccept",
+						"in": "formData",
+						"description": "1 for accept 2 for reject",
+						"required": true,
+						"enum":[1,2],
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/favouriteEvent": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-favouriteEvent-post",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "formData",
+						"description": "Enter the event Id",
+						"required": true,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/favouriteEventList": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-favouriteEventList-get",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+			
+				],
+				"responses": {}
+			}
+		},
+		"/api/contactUs": {
+			"post": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "api-contactUs-post",
+				"tags": ["Application User"],
+				"description": "",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "formData",
+						"description": "Enter your name",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "email",
+						"in": "formData",
+						"description": "Enter your email",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "phone",
+						"in": "formData",
+						"description": "Enter your phone number with country code",
+						"required": false,
+						"type": "string",
+						"value": ""
+					},
+					{
+						"name": "message",
+						"in": "formData",
+						"description": "Enter your description or message here",
+						"required": false,
+						"type": "string",
+						"value": ""
+					}
+				],
+				"responses": {}
+			}
+		},
+		"/api/faq": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "faq list",
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		},
+		"/api/messageQueueTest": {
+			"get": {
+				"x-swagger-router-controller": "middleware-name1",
+				"operationId": "message Queue Test",
+				"tags": ["Application User"],
+				"description": "",
+				"parameters": [
+				],
+				"responses": {}
+			}
+		}
+	},
+	"definations":{
+		"tagePeoplesId": {
+			"type": "object",
+			"properties": {
+				"tagePeoplesId": {
+					"type": "string"
+				}
+			},
+			"example": [
+				{ "userId": "111" },
+				{ "userId": "2222" }
+			]
+		}
+	}
+}
+
+
